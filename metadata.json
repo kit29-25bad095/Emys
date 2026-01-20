@@ -1,0 +1,7 @@
+{
+  "name": "Emys",
+  "description": "A futuristic Earth observation platform unifying Sentinel, Landsat, and ISRO data into a single intelligent analytics system.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
