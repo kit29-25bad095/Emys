@@ -5,9 +5,10 @@ import { PROCESSING_LAYERS } from '../constants';
 interface ProcessingStackProps {
   activeLayerId: string | null;
   onSelectLayer: (id: string, query: string) => void;
+  searchTerm?: string;
 }
 
-const ProcessingStack: React.FC<ProcessingStackProps> = ({ activeLayerId, onSelectLayer }) => {
+const ProcessingStack: React.FC<ProcessingStackProps> = ({ activeLayerId, onSelectLayer, searchTerm = '' }) => {
   return (
     <div className="flex flex-col gap-3 py-6 relative">
       {/* Animated Data Path Line */}
@@ -17,9 +18,12 @@ const ProcessingStack: React.FC<ProcessingStackProps> = ({ activeLayerId, onSele
 
       {PROCESSING_LAYERS.map((layer, index) => {
         const isActive = activeLayerId === layer.id;
+        const matchesSearch = searchTerm === '' || 
+          layer.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+          layer.description.toLowerCase().includes(searchTerm.toLowerCase());
         
         return (
-          <div key={layer.id} className="relative group">
+          <div key={layer.id} className={`relative group transition-opacity duration-300 ${matchesSearch ? 'opacity-100' : 'opacity-30'}`}>
             <button 
               onClick={() => onSelectLayer(layer.id, layer.sampleQuery)}
               className={`w-full text-left flex items-start gap-6 p-4 rounded-xl border transition-all duration-500 backdrop-blur-md outline-none

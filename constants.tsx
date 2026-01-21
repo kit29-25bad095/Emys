@@ -12,17 +12,17 @@ export const PROCESSING_LAYERS = [
   },
   { 
     id: 'standard', 
-    name: 'Atmospheric Correction & Grid', 
-    description: 'Harmonizing spectral bands and spatial resolutions (10m-30m fusion).', 
-    detailedInfo: 'Processing Level-1C to Level-2A data. Normalizing spectral bands across disparate sensors into a unified 5m synthetic grid using advanced radiometric calibration.',
-    sampleQuery: 'State-of-the-art techniques for multi-sensor satellite data normalization and atmospheric correction',
+    name: 'Unified Grid Harmonization', 
+    description: 'Scaling spatial, temporal, and resolution differences into a unified dataset.', 
+    detailedInfo: 'Aligning 30m Landsat with 10m Sentinel. Normalizing spectral bands and temporal revisits into a sub-5m synthetic planetary grid.',
+    sampleQuery: 'State-of-the-art techniques for multi-sensor satellite data normalization and spatial resampling',
     icon: '⚖️' 
   },
   { 
     id: 'fusion', 
     name: 'AI/ML Feature Fusion', 
     description: 'Computer vision stack for automated building, crop, and water extraction.', 
-    detailedInfo: 'Leveraging Vision Transformers (ViT) and CNNs to fuse multi-temporal imagery. Detecting change vectors in urban sprawl, forest cover, and water bodies with 98% precision.',
+    detailedInfo: 'Leveraging Vision Transformers (ViT) and CNNs to fuse multi-temporal imagery. Detecting change vectors in urban sprawl with 98% precision.',
     sampleQuery: 'Recent advancements in AI computer vision for planetary-scale multi-spectral feature extraction',
     icon: '🧠' 
   },
@@ -30,16 +30,16 @@ export const PROCESSING_LAYERS = [
     id: 'cloud', 
     name: 'Elastic Cloud Processing', 
     description: 'Distributed compute nodes processing petabytes of pixel data.', 
-    detailedInfo: 'Highly scalable Kubernetes-orchestrated clusters processing 500+ terapixels per hour. Multi-region edge nodes ensure low-latency data availability.',
+    detailedInfo: 'Highly scalable Kubernetes-orchestrated clusters processing 500+ terapixels per hour. Multi-region edge nodes ensure low-latency.',
     sampleQuery: 'Efficiency and scalability of distributed cloud computing in processing global remote sensing datasets',
     icon: '☁️' 
   },
   { 
     id: 'dashboard', 
-    name: 'Unified Decision Dashboard', 
-    description: 'Actionable insights for disaster response and climate monitoring.', 
-    detailedInfo: 'Transforming petabytes of raw pixels into tactical intelligence. Real-time alerting and report generation for humanitarian and environmental agencies.',
-    sampleQuery: 'Case studies on how real-time satellite dashboards improve disaster relief and climate monitoring outcomes',
+    name: 'Atmospheric Sentinel Desk', 
+    description: 'Actionable environmental insights for air purity and weather forecasting.', 
+    detailedInfo: 'Transforming unified datasets into tactical intelligence. Real-time alerting for air quality hotspots and meteorological shifts.',
+    sampleQuery: 'Case studies on how real-time satellite dashboards improve environmental monitoring and air quality response',
     icon: '📊' 
   }
 ];

@@ -8,6 +8,8 @@ import Dashboard from './components/Dashboard';
 const App: React.FC = () => {
   const [activeLayerId, setActiveLayerId] = useState<string | null>(null);
   const [dashboardTrigger, setDashboardTrigger] = useState<string | null>(null);
+  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+  const [selectedSatId, setSelectedSatId] = useState<string | null>(null);
 
   const handleSelectLayer = (id: string, query: string) => {
     setActiveLayerId(id);
@@ -19,9 +21,19 @@ const App: React.FC = () => {
     }
   };
 
+  const handleGlobalSearchSubmit = (query: string) => {
+    if (!query.trim()) return;
+    setDashboardTrigger(query);
+    document.getElementById('dashboard-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#020617] text-slate-200 selection:bg-sky-500/30">
-      <Header />
+      <Header 
+        searchTerm={globalSearchTerm} 
+        onSearchChange={setGlobalSearchTerm} 
+        onSearchSubmit={handleGlobalSearchSubmit}
+      />
       
       <main className="flex-1 container mx-auto px-4 py-6 flex flex-col gap-10">
         
@@ -30,7 +42,10 @@ const App: React.FC = () => {
           {/* Main Visualizer */}
           <div className="lg:col-span-7 xl:col-span-8 h-[500px] lg:h-auto min-h-[600px] relative">
             <div className="absolute inset-0 bg-radial-gradient from-sky-500/5 to-transparent pointer-events-none"></div>
-            <EarthCanvas />
+            <EarthCanvas 
+              highlightTerm={globalSearchTerm} 
+              selectedSatId={selectedSatId} 
+            />
             
             {/* Visual Overlays for 'Lab' feel */}
             <div className="absolute top-8 right-8 flex flex-col items-end gap-2 pointer-events-none">
@@ -58,6 +73,7 @@ const App: React.FC = () => {
               <ProcessingStack 
                 activeLayerId={activeLayerId} 
                 onSelectLayer={handleSelectLayer} 
+                searchTerm={globalSearchTerm}
               />
             </div>
           </div>
@@ -86,7 +102,12 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          <Dashboard autoTriggerQuery={dashboardTrigger} />
+          <Dashboard 
+            autoTriggerQuery={dashboardTrigger} 
+            globalSearchTerm={globalSearchTerm} 
+            onSatSelect={setSelectedSatId}
+            selectedSatId={selectedSatId}
+          />
         </section>
       </main>
 
