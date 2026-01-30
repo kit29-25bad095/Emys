@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip as RechartsTooltip } from 'recharts';
-import { AnalyticInsights, SatelliteState } from '../types';
+import { ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
+import { AnalyticInsights } from '../types';
 import { fetchAnalyticInsights } from '../services/geminiService';
 import TelemetryFeed from './TelemetryFeed';
 

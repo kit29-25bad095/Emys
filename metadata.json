@@ -1,7 +1,8 @@
 {
-  "name": "Emys",
-  "description": "A futuristic Earth observation platform unifying Sentinel, Landsat, and ISRO data into a single intelligent analytics system.",
+  "name": "TerraFusion",
+  "description": "A futuristic Earth observation platform unifying Sentinel, Landsat, and ISRO data into a single intelligent analytics system with real-time AI command.",
   "requestFramePermissions": [
-    "geolocation"
+    "geolocation",
+    "microphone"
   ]
 }

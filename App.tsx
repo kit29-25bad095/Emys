@@ -4,6 +4,8 @@ import Header from './components/Header';
 import EarthCanvas from './components/EarthCanvas';
 import ProcessingStack from './components/ProcessingStack';
 import Dashboard from './components/Dashboard';
+import MissionBriefing from './components/MissionBriefing';
+import TemporalDrift from './components/TemporalDrift';
 
 const App: React.FC = () => {
   const [activeLayerId, setActiveLayerId] = useState<string | null>(null);
@@ -40,7 +42,7 @@ const App: React.FC = () => {
         {/* Upper Operations Deck */}
         <section className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Main Visualizer */}
-          <div className="lg:col-span-7 xl:col-span-8 h-[500px] lg:h-auto min-h-[600px] relative">
+          <div className="lg:col-span-7 xl:col-span-8 h-[500px] lg:h-auto min-h-[650px] relative">
             <div className="absolute inset-0 bg-radial-gradient from-sky-500/5 to-transparent pointer-events-none"></div>
             <EarthCanvas 
               highlightTerm={globalSearchTerm} 
@@ -48,7 +50,7 @@ const App: React.FC = () => {
             />
             
             {/* Visual Overlays for 'Lab' feel */}
-            <div className="absolute top-8 right-8 flex flex-col items-end gap-2 pointer-events-none">
+            <div className="absolute top-8 left-8 flex flex-col items-start gap-2 pointer-events-none">
               <div className="text-[9px] font-mono text-slate-600 bg-slate-950/50 p-2 border border-slate-800 rounded">
                 SYSTEM_MODE: PLANETARY_FUSION<br/>
                 UPLINK_STABLE: 100%<br/>
@@ -57,30 +59,38 @@ const App: React.FC = () => {
             </div>
           </div>
           
-          {/* Processing Stream */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col">
-            <div className="mb-4">
-              <div className="text-[10px] font-black text-sky-500 uppercase tracking-widest mb-1">Operations Pipeline</div>
-              <h2 className="text-2xl font-black tracking-tight text-white uppercase">
-                Data <span className="text-sky-500">Standardization</span>
-              </h2>
-              <p className="text-slate-500 text-xs mt-2 leading-relaxed">
-                Aggregating spectral telemetry from multiple constellations to generate 
-                human-understandable planet intelligence. Click a node to inspect function.
-              </p>
+          {/* Right Control Column */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-6">
+            {/* Mission Briefing Module */}
+            <div className="h-64">
+              <MissionBriefing />
             </div>
-            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-              <ProcessingStack 
-                activeLayerId={activeLayerId} 
-                onSelectLayer={handleSelectLayer} 
-                searchTerm={globalSearchTerm}
-              />
+
+            {/* Processing Stream */}
+            <div className="flex-1 flex flex-col">
+              <div className="mb-4">
+                <div className="text-[10px] font-black text-sky-500 uppercase tracking-widest mb-1">Operations Pipeline</div>
+                <h2 className="text-2xl font-black tracking-tight text-white uppercase">
+                  Data <span className="text-sky-500">Standardization</span>
+                </h2>
+                <p className="text-slate-500 text-xs mt-2 leading-relaxed">
+                  Aggregating spectral telemetry from multiple constellations to generate 
+                  human-understandable planet intelligence.
+                </p>
+              </div>
+              <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <ProcessingStack 
+                  activeLayerId={activeLayerId} 
+                  onSelectLayer={handleSelectLayer} 
+                  searchTerm={globalSearchTerm}
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Global Impact Dashboard */}
-        <section id="dashboard-section" className="border-t border-slate-800/30 pt-10 pb-20">
+        <section id="dashboard-section" className="border-t border-slate-800/30 pt-10">
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -108,6 +118,15 @@ const App: React.FC = () => {
             onSatSelect={setSelectedSatId}
             selectedSatId={selectedSatId}
           />
+        </section>
+
+        {/* Temporal Visualization Section */}
+        <section className="mb-20">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div className="xl:col-span-12">
+               <TemporalDrift />
+            </div>
+          </div>
         </section>
       </main>
 
